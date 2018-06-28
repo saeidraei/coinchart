@@ -1,0 +1,55 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="نمودار قیمت اتریوم و بیتکوین و ... در کنار هم" />
+  <link rel="canonical" href="https://www.coinchart.ir/" />
+  <link rel="shortlink" href="https://www.coinchart.ir/" />
+  <meta property="og:site_name" content="کوین چارت" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.coinchart.ir/" />
+  <meta property="og:title" content="کوین چارت" />
+  <meta property="og:description" content="نمودار قیمت اتریوم و بیتکوین و ... در کنار هم" />
+
+  <title>CoinChart | کوین چارت</title>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115997568-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-115997568-2');
+  </script>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+<!--dingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div id="tradingview_7b910"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <script type="text/javascript">
+    new TradingView.widget(
+      {
+        "autosize": true,
+        "symbol": "KRAKEN:ETHUSD",
+        "interval": "5",
+        "timezone": "Etc/UTC",
+        "theme": "Dark",
+        "style": "1",
+        "locale": "fa_IR",
+        "toolbar_bg": "#f1f3f6",
+        "enable_publishing": false,
+        "allow_symbol_change": true,
+        "container_id": "tradingview_7b910"
+      }
+    );
+  </script>
+</div>
+<!-- TradingView Widget END -->
+</body>
+</html>

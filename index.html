@@ -1,4 +1,4 @@
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="utf-8" />
   <meta name="description" content="نمودار قیمت اتریوم و بیتکوین و ... در کنار هم" />
@@ -9,37 +9,209 @@
   <meta property="og:url" content="https://www.coinchart.ir/" />
   <meta property="og:title" content="کوین چارت" />
   <meta property="og:description" content="نمودار قیمت اتریوم و بیتکوین و ... در کنار هم" />
-
-  <title>CoinChart | کوین چارت</title>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="/js/jquery-ui.min.css">
+    <script src="/js/script.js"></script>
+    <title>CoinChart | کوین چارت</title>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115997568-2"></script>
+  <!-- async :A script that will be run asynchronously as soon as it is available -->
   <script>
-    window.dataLayer = window.dataLayer || [];
+
+  window.dataLayer = window.dataLayer || [];
+    <!--checks if a global variable called dataLayer hasalready been declared. If it has, it’s left alone andexecution proceeds to the push() block. If, however,dataLayer has NOT been defined, the first line then assigns a new,empty Array to it. This ensures that the following push() will  always work.-->
+
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
     gtag('config', 'UA-115997568-2');
+    <!--f you’re using Google Analytics and Google AdWords, your gtag.js snippet would look like this-->
   </script>
   <style>
-    body{
-      margin: 0;
-      padding: 0;
-    }
+      html, body{width: 100%; height: 100%; padding: 0; margin: 0;
+          background-image: url("https://source.unsplash.com/1600x900/?nature ");}
+
+      #wrapper{
+          width: 450px;
+          height: 500px;
+          padding: 2px;
+          top:7%;
+      }
+      #second-wrapper {
+          bottom:74%;
+          left: 33.5%;
+          width: 450px;
+          height: 500px;
+          padding: 2px;
+      }
+      #third-wrapper{
+          bottom:155%;
+          left: 67%;
+          width: 450px;
+          height: 500pX;
+          padding: 2px;
+      }
+      #add-chart{
+          background-color: #af1706; /* Green */
+          border-radius: 5px;
+          color: #ececdf;
+          padding: 10px 17px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin-top: 10px ;
+          margin-left: 1200px ;
+          cursor: pointer;
+
+      }
+
+
+
+      .popup-header , #popup-header1 , #popup-header2{
+          z-index: 200;
+          padding: 15px;
+          width: auto;
+          background-color: rgba(0, 0, 77, .5);
+          color: #ffffff;
+          height: 28px;
+          cursor: -webkit-grabbing;
+          padding-top: 0;
+
+      }
+
+
+
+
+
+
+      .close-chat, .minimize-chat {
+          cursor: pointer;
+          margin-right: 5px;
+          float: right !important;
+      }
+
+
+
+
+
+
+
+
+
+      .hidden {
+          display: none !important;
+          visibility: hidden !important;
+      }
+      * {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          box-sizing: border-box;
+      }
+
+      #popup-WrapperClose ,#popup-WrapperClose1 ,#popup-WrapperClose2{
+          position: absolute;
+          width:7%;
+          height: 5.5%;
+         float: right;
+          cursor: pointer;
+          border-radius:5px;
+          right: 0%;
+          top: .6%;
+      }
+
+      #popup-WrapperMini  , #popup-WrapperMini1 , #popup-WrapperMini2 {
+          position: absolute;
+          width:7%;
+          height: 5.5%;
+          cursor: pointer;
+          float: right;
+          border-radius:5px;
+          right: 6%;
+          top: .6%;
+      }
+      .tradingview-widget-container , .tradingview-widget-container1 , .tradingview-widget-container2
+      {
+          padding:0;
+
+          opacity: .8;
+      }
+      .modal {
+          position: fixed;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          opacity: 0;
+          visibility: hidden;
+          transform: scale(1.1);
+          transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+      }
+      .modal-content {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: white;
+          padding: 1rem 1.5rem;
+          width: 24rem;
+          border-radius: 0.5rem;
+      }
+      .close-button {
+          float: right;
+          width: 1.5rem;
+          line-height: 1.5rem;
+          text-align: center;
+          cursor: pointer;
+          border-radius: 0.25rem;
+          background-color: lightgray;
+      }
+      .close-button:hover {
+          background-color: darkgray;
+      }
+      .show-modal {
+          opacity: 1;
+          visibility: visible;
+          transform: scale(1.0);
+          transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+      }
+
+
+
   </style>
+
 </head>
+
+
+
+
+
+
+
 <body>
-<!--dingView Widget BEGIN -->
-<div class="tradingview-widget-container">
+<button id="add-chart" class=" add-chart"  type="button"  onclick="preview()">Add Chart</button>
+
+
+<div id="wrapper" >
+    <div class="popup-header" id="popup-header">
+        <span id="popup-WrapperClose" >&times;</span>
+        <span id="popup-WrapperMini"  >-</span>
+    </div>
+
+    <div class="tradingview-widget-container" >
   <div id="tradingview_7b910"></div>
   <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
   <script type="text/javascript">
-    new TradingView.widget(
+    window.td = new TradingView.widget(
       {
         "autosize": true,
         "symbol": "KRAKEN:ETHUSD",
         "interval": "5",
         "timezone": "Etc/UTC",
-        "theme": "Dark",
+        "theme": "dark",
         "style": "1",
         "locale": "fa_IR",
         "toolbar_bg": "#f1f3f6",
@@ -48,8 +220,87 @@
         "container_id": "tradingview_7b910"
       }
     );
+
   </script>
 </div>
-<!-- TradingView Widget END -->
+
+</div>
+
+<div id="second-wrapper">
+<div class="popup-header" id="popup-header1">
+    <span id="popup-WrapperClose1">&times;</span>
+    <span id="popup-WrapperMini1" >-</span>
+
+</div>
+
+<div class="tradingview-widget-container1">
+    <div id="tradingview_2f1d2"></div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+       window.td2=new TradingView.widget(
+            {
+                "autosize": true,
+                "symbol": "COINBASE:BTCUSD",
+                "interval": "5",
+                "timezone": "Etc/UTC",
+                "theme": "Dark",
+                "style": "1",
+                "locale": "en",
+                "toolbar_bg": "#f1f3f6",
+                "enable_publishing": false,
+                "allow_symbol_change": true,
+                "container_id": "tradingview_7f11f"
+            }
+        );
+    </script>
+
+</div>
+</div>
+
+<div id="third-wrapper">
+    <div class="popup-header" id="popup-header2">
+        <span id="popup-WrapperClose2">&times;</span>
+        <span id="popup-WrapperMini2" >-</span>
+
+    </div>
+
+
+    <div class="tradingview-widget-container2">
+        <div id="tradingview_62941"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+        <script type="text/javascript">
+            window.td3=new TradingView.widget(
+                {
+                    "autosize": true,
+                    "symbol": "KRAKEN:XRPUSD",
+                    "interval": "5",
+                    "timezone": "Etc/UTC",
+                    "theme": "Dark",
+                    "style": "1",
+                    "locale": "en",
+                    "toolbar_bg": "#f1f3f6",
+                    "enable_publishing": false,
+                    "allow_symbol_change": true,
+                    "container_id": "tradingview_0e9df"
+                }
+            );
+        </script>
+    </div>
+
+</div>
+
 </body>
 </html>
+
+
+
+
+
+<div class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h1>Hello, I am a modal!</h1>
+    </div>
+</div>
+

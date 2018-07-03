@@ -2,12 +2,9 @@ $(document).ready(function() {
 
     //start of saving user state
 window.charts=[] ; // windows .charts is to make it global to be accesable every where
-    window.charts.push({
-   name:"",
-   symbol:"",
-    position:{},
-    size:{}
-});
+
+
+
     function makeid() {
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -25,8 +22,8 @@ window.renderChart = function (chartObj){
         '        <span class="popup-WrapperClose" >&times;</span>\n' +
         '        <span class="popup-WrapperMini"  >-</span>\n' +
         '    </div>\n' +
-        '    <div class="tradingview-widget-container" style="height:'+chartObj.size.height+'px;width:'+chartObj.size.width+'px; " >\n' +
-        '  <div id="'+id+'" style="height:'+chartObj.size.height+'px; width:'+chartObj.size.width+'px;"></div>\n' +
+        '    <div class="tradingview-widget-container" style="height:100%;width:100%; " >\n' +
+        '  <div id="'+id+'" style="height:100%;width:100%; "></div>\n' +
         '  <script type="text/javascript">\n' +
         '    window.td = new TradingView.widget(\n' +
         '      {\n' +
@@ -51,22 +48,28 @@ window.renderChart = function (chartObj){
         '</div>');
     // html.find('.wrapper').css("top","200px");
     $('body').append(html);
-    html.draggable().resizable({
+    window.saveState = function(){
+        window.charts = [];
+        $('.wrapper').each(function(position,element){
+            var chart = {};
+            var el = $(element);
+            chart.position = el.position();
+            // chart.size = element.size();
+            chart.size = {width:el.width(),height:el.height()};
+            chart.symbol = el.attr('data-symbol');
+            window.charts.push(chart);
+        });
+        Cookies.set('charts', JSON.stringify(window.charts));
+    }
+    html.draggable({
+        stop: function(e, ui) {
+            window.saveState();
+        }
+    }).resizable({
 
         handles: "n, e, s, w , ne, se, sw, nw" ,
         stop: function(e, ui) {
-            console.log(window.td);
-            window.charts = [];
-            $('.wrapper').each(function(position,element){
-                var chart = {};
-                var el = $(element);
-                chart.position = el.position();
-                // chart.size = element.size();
-                chart.size = {width:"100px",height:"100px"};
-                chart.symbol = el.attr('data-symbol');
-                window.charts.push(chart);
-            });
-            Cookies.set('charts', JSON.stringify(window.charts));
+            window.saveState();
         }
     });
 };
@@ -81,11 +84,10 @@ window.renderChart = function (chartObj){
         })
     }
     else {
-        window.charts.push({symbol: "KRAKEN:XRP", position: {top: "10px" , left:"0"} ,size:{height:"150px", width:"50px"}});
-        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top: "50px" , left:"50px"} ,size:{height:"150px", width:"50px"}});
+        window.charts.push({symbol: "COINBASE:ETHUSD", position: {top: 10 , left:0} ,size:{height:350, width:300}});
+        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top: 10 , left:500} ,size:{height:350, width:300}});
         window.renderChart(window.charts[0]);
         window.renderChart(window.charts[1]);
-        window.renderChart(window.charts[2]);
     }
 //end of user state savivg
 

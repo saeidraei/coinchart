@@ -56,7 +56,7 @@ window.renderChart = function (chartObj){
             var chart = {};
             var el = $(element);
             chart.position = el.position();
-            // chart.size = element.size();
+
             chart.size = {width:el.width(),height:el.height()};
             chart.symbol = el.attr('data-symbol');
             window.charts.push(chart);
@@ -94,10 +94,11 @@ window.renderChart = function (chartObj){
 
         })
     }
-    else {
-        window.charts.push({symbol: "COINBASE:ETHUSD", position: {top:30 , left:10} ,size:{height:350, width:300}});
-        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:30 , left:350} ,size:{height:350, width:300}});
-        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:30 , left:750} ,size:{height:350, width:300}});
+
+    else{
+        window.charts.push({symbol: "COINBASE:ETHUSD", position: {top:50 , left:25} ,size:{height:450, width:350}});
+        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:50 , left:400} ,size:{height:450, width:350}});
+        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:50 , left:770} ,size:{height:450, width:350}});
         window.renderChart(window.charts[0]);
         window.renderChart(window.charts[1]);
         window.renderChart(window.charts[2]);
@@ -128,11 +129,47 @@ window.renderChart = function (chartObj){
     //     }
     // });
 
+    // var x = window.matchMedia("(max-width: 500px)")
+    // if ( !(x.matches)){
+    //     window.charts.push({symbol: "COINBASE:ETHUSD", position: {top:20 ,  left:60 , right:60} ,size:{height:450, width:550}});
+    //     window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:500 , left:60 , right:60} ,size:{height:450, width:550}});
+    //     window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:980 , left:60 , right:60} ,size:{height:450, width:550}});
+    //     window.renderChart(window.charts[0]);
+    //     window.renderChart(window.charts[1]);
+    //     window.renderChart(window.charts[2]);
+    // }
+
+
+    var myObject =({
+
+        symbol:"",
+        position:{top:50 , left:770},
+        size:{height:450, width:350}
+    });
+    window.chooseCrypto = function() {
+        var symbolname = document.getElementById("custom-select").value;
+        if(symbolname.length>1) {
+            myObject.symbol=symbolname;
+            window.renderChart(myObject);
+        }
+    }
+    window.refresh = function() {
+        $("#refresh").click( function(e){
+            e.preventDefault();
+            Cookies.remove('charts');
+            location.reload();
+        });
+    }
 
 
 
-
-
+    // function myFunction(x) {
+    //     { // If media query matches
+    //         document.body.style.backgroundColor = "yellow";
+    //     } else {
+    //         document.body.style.backgroundColor = "pink";
+    //     }
+    // }
 
 
 

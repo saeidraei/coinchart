@@ -38,7 +38,8 @@
           /*position: absolute;*/
           height:100%;
           width:100%;
-          background-image: url("https://source.unsplash.com/1600x900/?nature ");}
+          background-image: url("https://source.unsplash.com/1600x900/?nature ");
+          background-size: cover;}
 
       .wrapper{
           position: absolute;
@@ -48,6 +49,7 @@
       }
 
       #add-chart{
+          position:fixed;
           background-color: #af1706; /* Green */
           border-radius: 5px;
           color: #ececdf;
@@ -57,10 +59,26 @@
           display: inline-block;
           font-size: 16px;
           margin-top: 10px ;
-          margin-left: 1200px ;
+          margin-left: 1250px ;
           cursor: pointer;
 
       }
+
+      #refresh{
+          position:fixed;
+          background-color: #af1706; /* Green */
+          border-radius: 5px;
+          color: #ececdf;
+          padding: 10px 17px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin-top: 10px ;
+          margin-left: 1150px ;
+          cursor: pointer;
+      }
+
       #close-popup{
 
           background-color: #af1706;
@@ -142,6 +160,8 @@
 
       /* Inner */
       .popup-inner {
+
+
           text-align: right;
           max-width:450px;
           width:90%;
@@ -189,6 +209,15 @@
           cursor: pointer;
           width: auto;
       }
+      /*@media only screen and (max-width: 500px) {*/
+          /*.wrapper .tradingview-widget-container{*/
+              /*position: relative;*/
+              /*width:300px;*/
+              /*height: 450px;*/
+              /*top: 20px;*/
+
+          /*}*/
+      /*}*/
 
 
 
@@ -205,6 +234,7 @@
 <body>
 
 <a  id="add-chart" class="btn" data-popup-open="popup-1" href="#">Add Chart</a>
+<button  id="refresh" class="btn" onclick="refresh()">refresh</button>
 
 
 <!--<div id="wrapper"  >-->
@@ -306,16 +336,15 @@
         <span class="popup-close" data-popup-close="popup-1" href="#">&times;</span>
         <h2> انتخاب ارز دیجیتال</h2>
         <select id="custom-select">
-            <option value="ارز دیجیتال خود را انتخاب کنید">ارز دیجیتال خود را انتخاب کنید</option>
+            <option value="">ارز دیجیتال خود را انتخاب کنید</option>
             <option value="bitcoin cash">bitcoin cash</option>
-            <option value="NEO">NEO</option>
+            <option value="NEO">neo</option>
             <option value="dash">dash</option>
-            <option value="audi">Audi</option>
         </select>
         <br>
         <br>
 
-        <button id="close-popup" data-popup-close="popup-1" href="#">تایید</button>
+        <button id="close-popup" data-popup-close="popup-1" onclick="chooseCrypto()">تایید</button>
 
 
     </div>

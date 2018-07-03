@@ -14,16 +14,18 @@ window.charts=[] ; // windows .charts is to make it global to be accesable every
 
         return text;
     }
+
 window.renderChart = function (chartObj){
         console.log(chartObj);
         var id = makeid();
+        var slideToggleId = makeid();
     var html = $('<div class="wrapper" data-symbol="'+chartObj.symbol+'" style="top:'+chartObj.position.top+'px;left:'+chartObj.position.left+'px;height:'+chartObj.size.height+'px;width:'+chartObj.size.width+'px;" >\n' +
         '    <div class="popup-header" id="popup-header">\n' +
         '        <span class="popup-WrapperClose" >&times;</span>\n' +
         '        <span class="popup-WrapperMini"  >-</span>\n' +
         '    </div>\n' +
-        '    <div class="tradingview-widget-container" style="height:100%;width:100%; " >\n' +
-        '  <div id="'+id+'" style="height:100%;width:100%; "></div>\n' +
+        '    <div class="tradingview-widget-container"  id="'+slideToggleId+'" style="height:100%;width:100%;" >\n' +
+        '  <div id="'+id+'"   style="height:100%;width:100%; "></div>\n' +
         '  <script type="text/javascript">\n' +
         '    window.td = new TradingView.widget(\n' +
         '      {\n' +
@@ -67,11 +69,20 @@ window.renderChart = function (chartObj){
         }
     }).resizable({
 
-        handles: "n, e, s, w , ne, se, sw, nw" ,
+        handles: "all" ,
         stop: function(e, ui) {
             window.saveState();
         }
     });
+    html.find('.popup-WrapperMini').click( function() {
+        $("#"+slideToggleId).slideToggle();
+        console.log('hiding...')
+    });
+    // html.find is used for selecting element in html jquery element
+    html.find(".popup-WrapperClose").click(function(event){
+        this.closest(".wrapper").remove();
+    });
+    //closest search for parents of popup-WrapperClose first wrapper which is finded in now available which we remove it down
 };
     var charts = Cookies.get('charts');
 
@@ -84,10 +95,12 @@ window.renderChart = function (chartObj){
         })
     }
     else {
-        window.charts.push({symbol: "COINBASE:ETHUSD", position: {top: 10 , left:0} ,size:{height:350, width:300}});
-        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top: 10 , left:500} ,size:{height:350, width:300}});
+        window.charts.push({symbol: "COINBASE:ETHUSD", position: {top:30 , left:10} ,size:{height:350, width:300}});
+        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:30 , left:350} ,size:{height:350, width:300}});
+        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:30 , left:750} ,size:{height:350, width:300}});
         window.renderChart(window.charts[0]);
         window.renderChart(window.charts[1]);
+        window.renderChart(window.charts[2]);
     }
 //end of user state savivg
 
@@ -115,31 +128,12 @@ window.renderChart = function (chartObj){
     //     }
     // });
 
-    $(".popup-WrapperClose").mousedown(function(){
-        $("#wrapper").remove();
-    });
-        $(".popup-WrapperClose1").mousedown(function(){
-            $("#second-wrapper").remove();
-    });
-    $(" .popup-WrapperClose2").mousedown(function(){
-        $("#third-wrapper").remove();
-    });
 
-    $('.popup-WrapperMini').click( function() {
-        $(".tradingview-widget-container").slideToggle();
-        console.log('hiding...')
 
-    });
-    $('.popup-WrapperMini1').click( function() {
-        $(".tradingview-widget-container1").slideToggle();
-        console.log('hiding...')
 
-    });
-    $('.popup-WrapperMini2').click( function() {
-        $(".tradingview-widget-container2").slideToggle();
-        console.log('hiding...')
 
-    });
+
+
 
 
 

@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     //start of saving user state
 window.charts=[] ; // windows .charts is to make it global to be accesable every where
-
+var x=window.matchMedia('only screen and (max-device-width: 700px)');
 
 
     function makeid() {
@@ -53,27 +53,38 @@ window.renderChart = function (chartObj){
     window.saveState = function(){
         window.charts = [];
         $('.wrapper').each(function(position,element){
-            var chart = {};
-            var el = $(element);
-            chart.position = el.position();
+            // if(window.matchMedia('only screen and (max-device-width: 700px)').matches ){
+            //     return;
+            // }
+            // else if (window.matchMedia('screen').matches){
 
-            chart.size = {width:el.width(),height:el.height()};
-            chart.symbol = el.attr('data-symbol');
-            window.charts.push(chart);
-        });
+                var chart = {};
+                var el = $(element);
+                chart.position = el.position();
+
+                chart.size = {width: el.width(), height: el.height()};
+                chart.symbol = el.attr('data-symbol');
+                window.charts.push(chart);
+            });
         Cookies.set('charts', JSON.stringify(window.charts));
     }
+if(window.innerWidth >= 800) {
+
     html.draggable({
-        stop: function(e, ui) {
+
+        stop: function (e, ui) {
+
+
             window.saveState();
         }
     }).resizable({
 
-        handles: "all" ,
-        stop: function(e, ui) {
+        handles: "all",
+        stop: function (e, ui) {
             window.saveState();
         }
     });
+}
     html.find('.popup-WrapperMini').click( function() {
         $("#"+slideToggleId).slideToggle();
         console.log('hiding...')
@@ -84,8 +95,9 @@ window.renderChart = function (chartObj){
     });
     //closest search for parents of popup-WrapperClose first wrapper which is finded in now available which we remove it down
 };
-    var charts = Cookies.get('charts');
+    // var x=;
 
+    var charts = Cookies.get('charts');
     if(charts){
         console.log(JSON.parse(charts));
         window.charts = JSON.parse(charts);
@@ -95,14 +107,23 @@ window.renderChart = function (chartObj){
         })
     }
 
-    else{
-        window.charts.push({symbol: "COINBASE:ETHUSD", position: {top:50 , left:25} ,size:{height:450, width:350}});
-        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:50 , left:400} ,size:{height:450, width:350}});
-        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:50 , left:770} ,size:{height:450, width:350}});
+//     else if  (window.matchMedia('only screen and (max-device-width: 420px)').matches ){
+//         window.charts.push({symbol: "COINBASE:ETHUSD", position: {top: 20, left: 30}, size: {height: 450, width: 300}});
+//     window.charts.push({symbol: "COINBASE:BTCUSD", position: {top: 510, left: 30}, size: {height: 450, width: 300}});
+//     window.charts.push({symbol: "COINBASE:BTCUSD", position: {top: 1000, left: 30}, size: {height: 450, width: 300}});
+//     window.renderChart(window.charts[0]);
+//     window.renderChart(window.charts[1]);
+//     window.renderChart(window.charts[2]);
+// }
+    else if (window.matchMedia('screen').matches){
+        window.charts.push({symbol: "COINBASE:ETHUSD", position: {top:130 , left:25} ,size:{height:420, width:350}});
+        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:130 , left:400} ,size:{height:420, width:350}});
+        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:130 , left:770} ,size:{height:420, width:350}});
         window.renderChart(window.charts[0]);
         window.renderChart(window.charts[1]);
         window.renderChart(window.charts[2]);
     }
+
 //end of user state savivg
 
 
@@ -129,15 +150,7 @@ window.renderChart = function (chartObj){
     //     }
     // });
 
-    // var x = window.matchMedia("(max-width: 500px)")
-    // if ( !(x.matches)){
-    //     window.charts.push({symbol: "COINBASE:ETHUSD", position: {top:20 ,  left:60 , right:60} ,size:{height:450, width:550}});
-    //     window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:500 , left:60 , right:60} ,size:{height:450, width:550}});
-    //     window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:980 , left:60 , right:60} ,size:{height:450, width:550}});
-    //     window.renderChart(window.charts[0]);
-    //     window.renderChart(window.charts[1]);
-    //     window.renderChart(window.charts[2]);
-    // }
+    //
 
 
     var myObject =({
@@ -199,3 +212,24 @@ $(function() {
 
 
 
+// setTimeout(function(){
+//
+//     if(window.innerWidth >= 800) {
+//
+//         html.draggable({
+//
+//             stop: function (e, ui) {
+//
+//
+//                 window.saveState();
+//             }
+//         }).resizable({
+//
+//             handles: "all",
+//             stop: function (e, ui) {
+//                 window.saveState();
+//             }
+//         });
+//     }
+//
+// }, 5000);

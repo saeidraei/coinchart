@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
+    <link rel="stylesheet" href="css/style.css">
   <meta charset="utf-8" />
   <meta name="description" content="نمودار قیمت اتریوم و بیتکوین و ... در کنار هم" />
   <link rel="canonical" href="https://www.coinchart.ir/" />
@@ -31,197 +32,7 @@
     gtag('config', 'UA-115997568-2');
     <!--f you’re using Google Analytics and Google AdWords, your gtag.js snippet would look like this-->
   </script>
-  <style>
-      html, body{
-          padding: 0;
-          margin: 0;
-          /*position: absolute;*/
-          height:100%;
-          width:100%;
-          background-image: url("https://source.unsplash.com/1600x900/?nature ");
-          background-size: cover;}
 
-      .wrapper{
-          position: absolute;
-          /*height:50%;*/
-          /*top:10%;*/
-          /*left: 1%;*/
-      }
-
-      #add-chart{
-          position:fixed;
-          background-color: #af1706; /* Green */
-          border-radius: 5px;
-          color: #ececdf;
-          padding: 10px 17px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin-top: 10px ;
-          margin-left: 1250px ;
-          cursor: pointer;
-
-      }
-
-      #refresh{
-          position:fixed;
-          background-color: #af1706; /* Green */
-          border-radius: 5px;
-          color: #ececdf;
-          padding: 10px 17px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin-top: 10px ;
-          margin-left: 1150px ;
-          cursor: pointer;
-      }
-
-      #close-popup{
-
-          background-color: #af1706;
-          height: 40px;
-          width: 40px;
-          cursor: pointer;
-          margin-right: 550px;
-          border-radius: 10px;
-
-      }
-
-
-
-      .popup-header , #popup-header1 , #popup-header2{
-          z-index: 200;
-             padding: 5px;
-          width: auto;
-          background-color: rgba(0, 0, 77, .5);
-          color: #ffffff;
-          height: 28px;
-          cursor: -webkit-grabbing;
-          padding-top: 0;
-
-      }
-
-
-
-
-
-
-
-            * {
-          -webkit-box-sizing: border-box;
-          -moz-box-sizing: border-box;
-          box-sizing: border-box;
-          box-sizing: border-box;
-      }
-
-      .wrapper .popup-header .popup-WrapperClose{
-          position: absolute;
-          width:4%;
-          height: 5.5%;
-         float: right;
-          cursor: pointer;
-          border-radius:5px;
-          right: 0%;
-          top: .6%;
-      }
-
-      .wrapper .popup-header .popup-WrapperMini{
-          position: absolute;
-          width:2%;
-          height: 5.5%;
-          cursor: pointer;
-          float: right;
-          border-radius:5px;
-          right: 6%;
-          top: .6%;
-      }
-      .tradingview-widget-container , .tradingview-widget-container1 , .tradingview-widget-container2 {
-            /*position: absolute;*/
-           /*padding:2px;*/
-           opacity: .9;
-          /*height:50%;*/
-
-
-
-      }
-      .popup {
-          width:100%;
-          height:100%;
-          display:none;
-          position:fixed;
-          top:0px;
-          left:0px;
-          background:rgba(0,0,0,0.8);
-          z-index: 1;
-      }
-
-      /* Inner */
-      .popup-inner {
-
-
-          text-align: right;
-          max-width:450px;
-          width:90%;
-          padding:40px;
-          position:fixed;
-          top:50%;
-          left:50%;
-          -webkit-transform:translate(-50%, -50%);
-          transform:translate(-50%, -50%);
-          box-shadow:10px 10px 10px rgba(0,0,0,1);
-          border-radius:10px;
-          background: #fffff1;
-          cursor: pointer;
-      }
-
-      /* Close Button */
-      .popup-close {
-          width:30px;
-          height:30px;
-          padding-top:4px;
-          display:inline-block;
-          position:absolute;
-          top:0px;
-          right:0px;
-          transition:ease 0.25s;
-          -webkit-transform:translate(50%, -50%);
-          transform:translate(50%, -50%);
-          border-radius:1000px;
-          background: rgba(43, 43, 43, 0.8);
-          font-family:Arial, Sans-Serif;
-          font-size:20px;
-          text-align:center;
-          line-height:100%;
-          color:#fff;
-          cursor:context-menu;
-      }
-
-      .popup-close:hover {
-          -webkit-transform:translate(50%, -50%) rotate(180deg);
-          transform:translate(50%, -50%) rotate(180deg);
-          background:rgba(0,0,0,1);
-          text-decoration:none;
-      }
-      #custom-select{
-          cursor: pointer;
-          width: auto;
-      }
-      /*@media only screen and (max-width: 500px) {*/
-          /*.wrapper .tradingview-widget-container{*/
-              /*position: relative;*/
-              /*width:300px;*/
-              /*height: 450px;*/
-              /*top: 20px;*/
-
-          /*}*/
-      /*}*/
-
-
-
-  </style>
 
 </head>
 
@@ -232,9 +43,11 @@
 
 
 <body>
+<div id="tittle">
+<h1> کوین چارت</h1>
+<h3> نمودار قیمت اتریوم و بیتکوین و باقی کوین هادر کنار هم</h3>
+</div><!--<a  id="add-chart" class="btn" data-popup-open="popup-1" href="#">Add Chart</a>-->
 
-<a  id="add-chart" class="btn" data-popup-open="popup-1" href="#">Add Chart</a>
-<button  id="refresh" class="btn" onclick="refresh()">refresh</button>
 
 
 <!--<div id="wrapper"  >-->
@@ -337,22 +150,29 @@
         <h2> انتخاب ارز دیجیتال</h2>
         <select id="custom-select">
             <option value="">ارز دیجیتال خود را انتخاب کنید</option>
-            <option value="bitcoin cash">bitcoin cash</option>
-            <option value="NEO">neo</option>
-            <option value="dash">dash</option>
+            <option value="BITFINEX:BCHUSD">bitcoin cash</option>
+            <option value="BITFINEX:NEOUSD">Neo</option>
+            <option value="BITFINEX:XMRUSD">Monero</option>
+            <option value="BITTREX:DOGEUSD">doge coin</option>
         </select>
         <br>
-        <br>
-
         <button id="close-popup" data-popup-close="popup-1" onclick="chooseCrypto()">تایید</button>
 
 
     </div>
 </div>
 
+
+
+<nav class="container"  >
+    <button href="#" class="buttons"  tooltip="login" onclick=""></button>
+    <button  data-popup-open="popup-1" href="#" class="buttons" tooltip="Add-chart" >+</button>
+    <button href="#" class="buttons" id="refresh" tooltip="reset" onclick="refresh()"></button>
+    <button class="buttons" id="eyes"  tooltip="more" href="#"></button>
+
+</nav>
 </body>
 </html>
-
 
 
 

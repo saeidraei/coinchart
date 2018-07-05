@@ -116,9 +116,9 @@ if(window.innerWidth >= 800) {
 //     window.renderChart(window.charts[2]);
 // }
     else if (window.matchMedia('screen').matches){
-        window.charts.push({symbol: "COINBASE:ETHUSD", position: {top:130 , left:25} ,size:{height:420, width:350}});
-        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:130 , left:400} ,size:{height:420, width:350}});
-        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:130 , left:770} ,size:{height:420, width:350}});
+        window.charts.push({symbol: "COINBASE:ETHUSD", position: {top:140 , left:25} ,size:{height:420, width:350}});
+        window.charts.push({symbol: "COINBASE:BTCUSD", position: {top:140 , left:400} ,size:{height:420, width:350}});
+        window.charts.push({symbol: "BINANCE:EOSUSDT", position: {top:140 , left:770} ,size:{height:420, width:350}});
         window.renderChart(window.charts[0]);
         window.renderChart(window.charts[1]);
         window.renderChart(window.charts[2]);

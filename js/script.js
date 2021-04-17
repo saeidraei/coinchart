@@ -32,7 +32,7 @@ window.renderChart = function (chartObj){
         '        "autosize": true,\n' +
 
         '        "symbol": "'+chartObj.symbol+'",\n' +
-        '        "interval": "5",\n' +
+        '        "interval": "1",\n' +
         '        "timezone": "Etc/UTC",\n' +
         '        "theme": "dark",\n' +
         '        "style": "1",\n' +

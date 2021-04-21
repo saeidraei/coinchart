@@ -66,7 +66,7 @@ window.renderChart = function (chartObj){
                 chart.symbol = el.attr('data-symbol');
                 window.charts.push(chart);
             });
-        Cookies.set('charts', JSON.stringify(window.charts));
+        Cookies.set('charts', JSON.stringify(window.charts), { expires: 665 });
     }
 if(window.innerWidth >= 800) {
 
